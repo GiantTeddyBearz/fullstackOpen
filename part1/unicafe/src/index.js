@@ -30,6 +30,16 @@ const Display = ({text, value, final}) => {
 
 const Statistics = ({good, neutral, bad}) => {
   let all = good + neutral + bad;
+  if (good, neutral, bad == 0){
+    return (
+      <>
+      <Title text='statistics'/>
+      <div>
+        <p>No feedback given</p>
+      </div>
+      </>
+    )
+  }
   return (
   <>
     <Title text='statistics'/>
