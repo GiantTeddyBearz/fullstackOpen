@@ -17,13 +17,19 @@ const Statistic = ({text, value, final}) => {
   if (isNaN(value)){
     return(
       <>
-      {text} 0 {final}
+      <tr>
+        <td> {text} </td>
+        <td> 0 {final} </td>
+      </tr>
       </>
     )
   }
   return(
       <>
-      {text} {value} {final}
+      <tr>
+        <td> {text} </td> 
+        <td> {value} {final}</td>
+      </tr>
       </>
     )
   }
@@ -44,19 +50,14 @@ const Statistics = ({good, neutral, bad}) => {
   <>
     <Title text='statistics'/>
     <div>
-      <p>
-      <Statistic text='good' value={good}/>
-      <br/>
-      <Statistic text='neutral' value={neutral}/>
-      <br/>
-      <Statistic text='bad' value={bad}/>
-      <br/>
-      <Statistic text='all' value={all}/>
-      <br/>
-      <Statistic text='average' value={(good - bad)/all}/>
-      <br/>
-      <Statistic text='positive' value={good/all * 100} final='%'/>
-      </p>
+      <table>
+        <Statistic text='good' value={good}/>
+        <Statistic text='neutral' value={neutral}/>
+        <Statistic text='bad' value={bad}/>
+        <Statistic text='all' value={all}/>
+        <Statistic text='average' value={(good - bad)/all}/>
+        <Statistic text='positive' value={good/all * 100} final='%'/>
+      </table>
     </div>
   </>
   )
