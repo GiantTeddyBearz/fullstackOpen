@@ -7,10 +7,37 @@ const Header = (props) =>{
   )
 }
 
+const Part = (props) =>{ 
+  if (props.part1){
+    return (
+      <p>
+        {props.part1} {props.exercises1}
+      </p>
+    )
+  }
+  if (props.part2){
+    return (
+      <p>
+        {props.part2} {props.exercises2}
+      </p>
+    )
+  }
+  if (props.part3){
+    return (
+      <p>
+        {props.part3} {props.exercises3}
+      </p>
+    )
+  }
+}
 const Content = (props) =>{
   return (
-    <>
-      <p>
+    <div>
+      <Part part1={props.part1} exercises1={props.exercises1} />
+      <Part part2={props.part2} exercises2={props.exercises2} />
+      <Part part3={props.part3} exercises3={props.exercises3} />
+    </div>
+    /*<p>
         {props.part1} {props.exercises1}
       </p>
       <p>
@@ -19,7 +46,7 @@ const Content = (props) =>{
       <p>
         {props.part3} {props.exercises3}
       </p>
-    </>
+    </>*/
   )
 }
 
