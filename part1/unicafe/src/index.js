@@ -13,7 +13,7 @@ const Title = ({text}) => (
     {text}
   </h1>
 )
-const Display = ({text, value, final}) => {
+const Statistic = ({text, value, final}) => {
   if (isNaN(value)){
     return(
       <>
@@ -29,7 +29,7 @@ const Display = ({text, value, final}) => {
   }
 
 const Statistics = ({good, neutral, bad}) => {
-  let alls = good + neutral + bad;
+  let all = good + neutral + bad;
   if (good == 0 && neutral == 0 && bad == 0){
     return (
       <>
@@ -45,17 +45,17 @@ const Statistics = ({good, neutral, bad}) => {
     <Title text='statistics'/>
     <div>
       <p>
-      <Display text='good' value={good}/>
+      <Statistic text='good' value={good}/>
       <br/>
-      <Display text='neutral' value={neutral}/>
+      <Statistic text='neutral' value={neutral}/>
       <br/>
-      <Display text='bad' value={bad}/>
+      <Statistic text='bad' value={bad}/>
       <br/>
-      <Display text='all' value={alls}/>
+      <Statistic text='all' value={all}/>
       <br/>
-      <Display text='average' value={(good - bad)/alls}/>
+      <Statistic text='average' value={(good - bad)/all}/>
       <br/>
-      <Display text='positive' value={good/alls * 100} final='%'/>
+      <Statistic text='positive' value={good/all * 100} final='%'/>
       </p>
     </div>
   </>
