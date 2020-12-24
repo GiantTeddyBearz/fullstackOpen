@@ -29,8 +29,8 @@ const Display = ({text, value, final}) => {
   }
 
 const Statistics = ({good, neutral, bad}) => {
-  let all = good + neutral + bad;
-  if (good, neutral, bad == 0){
+  let alls = good + neutral + bad;
+  if (good == 0 && neutral == 0 && bad == 0){
     return (
       <>
       <Title text='statistics'/>
@@ -51,11 +51,11 @@ const Statistics = ({good, neutral, bad}) => {
       <br/>
       <Display text='bad' value={bad}/>
       <br/>
-      <Display text='all' value={all}/>
+      <Display text='all' value={alls}/>
       <br/>
-      <Display text='average' value={(good - bad)/all}/>
+      <Display text='average' value={(good - bad)/alls}/>
       <br/>
-      <Display text='positive' value={good/all * 100} final='%'/>
+      <Display text='positive' value={good/alls * 100} final='%'/>
       </p>
     </div>
   </>
