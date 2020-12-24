@@ -51,12 +51,14 @@ const Statistics = ({good, neutral, bad}) => {
     <Title text='statistics'/>
     <div>
       <table>
+        <tbody>
         <Statistic text='good' value={good}/>
         <Statistic text='neutral' value={neutral}/>
         <Statistic text='bad' value={bad}/>
         <Statistic text='all' value={all}/>
         <Statistic text='average' value={(good - bad)/all}/>
         <Statistic text='positive' value={good/all * 100} final='%'/>
+        </tbody>
       </table>
     </div>
   </>
