@@ -22,9 +22,9 @@ const Display = ({countries, newFilter}) => {
     {
         filtered.map(country =>
             (
-            <p key={country.alpha2Code}>
+            <div key={country.alpha2Code}>
                 {country.name}
-            </p>
+            </div>
             )
         )
     }

@@ -14,7 +14,7 @@ const Single = ({country}) => (
             languages
         </h2>
         <ul>
-            {country.languages.map(language => <li>{language.name}</li>)}
+            {country.languages.map(language => <li key={language.name}>{language.name}</li>)}
         </ul>
         <div>
             <img src={country.flag} width="100" height="100"/>
