@@ -26,7 +26,7 @@ function App() {
       <div>
         find countries <input value={newFilter} onChange={handleFilter}/>
       </div>
-      <Display countries={countries} newFilter={newFilter}/>
+      <Display countries={countries} newFilter={newFilter} setFilter={setNewFilter}/>
     </div>
   )
 }

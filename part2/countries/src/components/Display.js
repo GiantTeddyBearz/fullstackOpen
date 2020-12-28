@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Single from './Single'
 
-const Display = ({countries, newFilter}) => {
+const Display = ({countries, newFilter, setFilter}) => {
+
     let filtered = countries
             .filter(country => 
                 country.name.toLowerCase()
@@ -21,11 +22,14 @@ const Display = ({countries, newFilter}) => {
     <div>
     {
         filtered.map(country =>
-            (
-            <div key={country.alpha2Code}>
-                {country.name}
-            </div>
-            )
+            {
+                return (
+                    <div key={country.alpha2Code}>
+                    {country.name}
+                    <button onClick={()=>setFilter(country.name)}>show</button>
+                </div>)
+
+            }
         )
     }
   </div>)
