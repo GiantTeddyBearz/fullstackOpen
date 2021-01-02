@@ -38,6 +38,7 @@ const App = () => {
 
   const addPerson = (event) => {
     event.preventDefault()
+    const baseUrl = 'http://localhost:3001/persons';
     if (persons.filter(person => person.name === newName).length > 0){
       alert(`${newName} is already added to phonebook`)
       return;
@@ -48,9 +49,13 @@ const App = () => {
       number: newNumber
     }
 
-    setPersons(persons.concat(addedPerson))
-    setNewName('')
-    setNewNumber('')
+    axios
+      .post(`${baseUrl}`, addedPerson)
+      .then(response => {
+        setPersons(persons.concat(response.data))
+        setNewName('')
+        setNewNumber('')
+      })
     console.log('button clicked', event.target)
 
   }
