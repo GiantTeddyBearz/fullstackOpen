@@ -4,7 +4,6 @@ const Number = ({person}) => {
     return (
         <>
         {person.name} {person.number}
-        <br/>
         </>
     )
 }
