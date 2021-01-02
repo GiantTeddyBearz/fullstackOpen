@@ -36,8 +36,12 @@ const App = () => {
     console.log(event.target.value)
     setNewFilter(event.target.value)
   }
-  
+
   const handleDelete = (id) => {
+    let result = window.confirm(`Delete ${persons.find(person => person.id === id).name}`)
+    if (!result){
+      return;
+    }
       personsServices
       .adelete(id)
       .then(response => {
@@ -45,6 +49,7 @@ const App = () => {
       }
       )
       setPersons(persons.filter(persons => persons.id != id))
+
   }
 
   const addPerson = (event) => {
