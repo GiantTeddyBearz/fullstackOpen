@@ -1,82 +1,88 @@
 const express = require('express')
 const app = express()
-let notes = [
+
+app.use(express.json())
+let persons = [
   {
     id: 1,
-    content: "HTML is easy",
-    date: "2019-05-30T17:30:31.098Z",
-    important: true
+    name: "Arto Hellas",
+    number: "040-123456"
   },
   {
     id: 2,
-    content: "Browser can execute only Javascript",
-    date: "2019-05-30T18:39:34.091Z",
-    important: false
+    name: "Ada Lovelace",
+    number: "39-44-5323523"
   },
   {
     id: 3,
-    content: "GET and POST are the most important methods of HTTP protocol",
-    date: "2019-05-30T19:20:14.298Z",
-    important: true
+    name: "Dan Abramov",
+    number: "12-43-234345",
+  },
+  {
+    id: 4,
+    name: "Mary Poppendick",
+    number: "39-23-6423122"
   }
 ]
 
-app.use(express.json())
-
-app.get('/', (req, res) => {
-  res.send('<h1>Hello World!</h1>')
+app.get('/api/persons', (req, res) => {
+  res.json(persons)
 })
 
-app.get('/api/notes', (req, res) => {
-  res.json(notes)
+app.get('/api/info', (req, res) => {
+  res.send(`<p>${persons.length}</p>
+          <p>${new Date}</p>`)
 })
 
-//single resource
-app.get('/api/notes/:id', (req, res) => {
+app.get('/api/persons/:id', (req, res) => {
   const id = Number(req.params.id)
-  const note = notes.find(note => note.id === id)
-  if (note) {
-    res.json(note)
+  const person = persons.filter(person => person.id === id)
+  if (person) {
+    res.send(persons.filter(person => person.id === id))
   } else {
     res.status(404).end()
   }
 })
 
-//deleting resources
-app.delete('/api/notes/:id', (req, res) => {
+app.delete('/api/persons/:id', (req, res) => {
   const id = Number(req.params.id)
-  notes = notes.filter( note => note.id !== id)
-
-  res.status(204).end()
-})
-const PORT = 3001
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
+  const person = persons.filter(person => person.id === id)
+  
+  if (person) {
+    res.send(person)
+    persons = persons.filter(person => person.id != id)
+  } else {
+    res.status(404).end()
+  }
 })
 
 const generateId = () => {
-  const maxId = notes.length > 0 ? Math.max(...notes.map(n => n.id)) : 0
-  console.log (...notes.map(n => n.id))
-  return maxId + 1
+  return Math.floor(Math.random() * 100000 % 100000)
 }
 
-app.post('/api/notes', (req, res) => {
-  const body = req.body
-
-  if (!body.content) {
+app.post('/api/persons/', (req, res) => {
+  const body = req.body;
+  
+  if (!body.name || !body.number){
     return res.status(400).json({
-      error: 'content missing'
+      error: "name and number must be included"
+    })
+  } else if (persons.find(person =>
+    person.name === body.name
+  )) {
+    return res.status(400).json({
+      error: "name must be unique"
     })
   }
-  
-  const note = {
-    content: body.content,
-    important: body.important || false,
-    date: new Date(),
-    id: generateId()
+
+  const person = {
+    id: generateId(),
+    name: body.name,
+    number: body.number,
   }
-
-  notes = notes.concat(note)
-
-  res.json(note)
+  persons = persons.concat(person)
+  res.json(person)
 })
+
+const PORT = 3001
+app.listen(PORT)
