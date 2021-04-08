@@ -1,13 +1,12 @@
 {
-  "name": "part2-notes",
+  "name": "phonebook",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.3",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.1",
-    "cors": "^2.8.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
@@ -15,7 +14,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build:ui": "rm -rf build && cd ../fe-phonebook/ && npm run build --prod && cp -r build ../be-phonebook",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -42,5 +40,8 @@
   "devDependencies": {
     "json-server": "^0.16.3"
   },
-  "proxy": "http://localhost:3001"
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }
